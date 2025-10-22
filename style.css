@@ -1,0 +1,146 @@
+:root {
+    --color-fondo-1: #fceee3;
+    --color-fondo-2: #f7d9d9;
+    --color-fondo-3: #fff1e0;
+    --color-texto: #5a4a4a;
+    --color-boton: #e6a5a5;
+    --color-boton-texto: #ffffff;
+    
+    --tiempo-fade-texto: 1.5s;
+    --tiempo-fade-pagina: 1.5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Dancing Script', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-texto);
+    
+    background: linear-gradient(-45deg, var(--color-fondo-2), var(--color-fondo-1), var(--color-fondo-3), var(--color-fondo-2));
+    background-size: 400% 400%;
+    animation: animarFondo 20s ease infinite;
+}
+
+@keyframes animarFondo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.narrative-container {
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    padding: 2rem;
+}
+
+#text-line {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.4;
+    min-height: 4em;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    opacity: 0;
+    transition: opacity var(--tiempo-fade-texto) ease-in-out;
+}
+
+span#typing-span::after {
+    content: '|';
+    opacity: 1;
+    animation: blink 0.7s infinite;
+    margin-left: 0.15em;
+    font-weight: 300;
+}
+
+span#typing-span.done-typing::after {
+    content: '';
+    animation: none;
+    opacity: 0;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#start-button {
+    display: none;
+    opacity: 0;
+    
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    padding: 0.8em 2em;
+    margin-top: 2rem;
+    
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
+    
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    transition: all 0.3s ease;
+}
+
+#start-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background-color: #e09393;
+}
+
+.fade-in-button {
+    display: inline-block;
+    animation: fadeInButton 2s ease-in-out forwards;
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#page-fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    background-color: var(--color-fondo-1); 
+    
+    opacity: 0;
+    pointer-events: none; 
+    
+    transition: opacity var(--tiempo-fade-pagina) ease-in-out;
+    z-index: 9999;
+}
+
+#page-fade-overlay.is-visible {
+    opacity: 1;
+    pointer-events: all;
+}
