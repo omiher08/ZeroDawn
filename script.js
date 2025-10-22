@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
     const tiempoPausaFinal = 3000;
     const tiempoFadeTexto = 1500;
     const tiempoFadePagina = 1500;
-    const urlDestino = 'acertijos.html'; 
+    const urlDestino = 'https://omiher08.github.io/R1ddles/'; 
     
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -89,3 +89,4 @@ window.addEventListener('load', () => {
 
     iniciarNarrativa();
 });
+
